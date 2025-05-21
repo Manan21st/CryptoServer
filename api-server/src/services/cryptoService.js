@@ -32,7 +32,7 @@ const storeCryptoStats = async () => {
 
             console.log(`Saving stats for ${coin.id}`);
 
-            return new CryptoStat(cryptoStat).save();
+            return cryptoStat.save();
         });
         
         const savedData = await Promise.all(promises);
