@@ -9,7 +9,7 @@ const start = async () => {
     try {
         const nc = await connect({ servers: NATS_URL });
         console.log('Worker connected to NATS server');
-        cron.schedule('* * * * *', async () => {
+        cron.schedule('*/15 * * * *', async () => {
             const msg = { trigger: 'update'};
             nc.publish('crypto.update', JSON.stringify(msg));
             console.log('Published message to crypto.update channel', new Date().toISOString());
