@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  nats:
+    image: nats
+    container_name: nats
+    ports:
+      - "4222:4222"
+
+  api-server:
+    build: ./api-server
+    container_name: api-server
+    ports:
+      - "3000:3000"
+    depends_on:
+      - nats
+    environment:
+      - PORT=3000
+      - MONGO_URI=${MONGO_URI}
+      - NATS_URL=nats://nats:4222
+
+  worker-server:
+    build: ./worker-server
+    container_name: worker-server
+    depends_on:
+      - nats
+    environment:
+      - NATS_URL=nats://nats:4222
+
