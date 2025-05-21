@@ -14,6 +14,7 @@ const getLatestStats = async (coin) => {
     }
 
     return {
+        coin: coin,
         price: latestStat.price,
         marketCap: latestStat.marketCap,
         "24hChange": latestStat.change24h,
@@ -34,7 +35,10 @@ const getPriceDeviation = async (coin) => {
     const prices = stats.map(stat => stat.price);
     const deviation = calculateDeviation(prices);
 
-    return deviation;
+    return {
+        coin: coin,
+        deviation: deviation
+    };
 };
 
 
