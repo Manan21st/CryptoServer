@@ -1,5 +1,5 @@
 const CryptoStat = require('../models/cryptoStat');
-const calculateDeviation = require('../utils/calculateDeviation');
+const calculateDeviation = require('../utils/deviation');
 const { SUPPORTED_COINS } = require('./cryptoService');
 
 // function to get the stats for a coin
